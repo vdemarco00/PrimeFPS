@@ -27,9 +27,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        inputH = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
-        inputV = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
-
+        inputH = Input.GetAxis("Horizontal");
+        inputV = Input.GetAxis("Vertical");
+        
         mouseH = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         mouseV = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
@@ -38,7 +38,10 @@ public class PlayerController : MonoBehaviour
         rotationV = Mathf.Clamp(rotationV, -90, 90);
 
         Vector3 move = transform.right * inputH + transform.forward * inputV;
+        move.Normalize();
+        move *= movementSpeed * Time.deltaTime;
         move.y = rb.velocity.y;
+
         rb.velocity = move;
         transform.rotation = Quaternion.Euler(0, rotationH, 0);
         cam.transform.localRotation = Quaternion.Euler(rotationV, 0, 0);

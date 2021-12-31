@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
+    bool acceptInput;
+    public delegate void FireEvent();
+    FireEvent fireEvent;
+
     private void Awake()
     {
+        acceptInput = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (acceptInput)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (fireEvent != null)
+                    fireEvent();
+            }
+        }
+    }
+
+    public void FireEventSubscribe(FireEvent newMethod)
+    {
+        fireEvent += newMethod;
     }
 }

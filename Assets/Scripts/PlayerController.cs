@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
-            Debug.Log("force added");
             rb.AddForce(transform.up * jumpForce);
         }
 

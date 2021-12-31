@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] float mouseSensitivity;
     [SerializeField] float movementSpeed;
-
+    [SerializeField] float jumpForce;
     float inputH;
     float inputV;
 
@@ -27,6 +27,24 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        bool grounded = true;
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 1.6f))
+        {
+            grounded = true;
+        }
+        else
+        {
+            grounded = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        {
+            Debug.Log("force added");
+            rb.AddForce(transform.up * jumpForce);
+        }
+
         inputH = Input.GetAxis("Horizontal");
         inputV = Input.GetAxis("Vertical");
         

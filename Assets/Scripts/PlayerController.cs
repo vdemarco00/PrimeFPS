@@ -54,12 +54,21 @@ public class PlayerController : MonoBehaviour
         rotationV += -mouseV;
         rotationV = Mathf.Clamp(rotationV, -90, 90);
 
+        
         Vector3 move = transform.right * inputH + transform.forward * inputV;
         move.Normalize();
         move *= movementSpeed * Time.deltaTime;
         move.y = rb.velocity.y;
-
-        rb.velocity = move;
+        if (grounded)
+        {
+            rb.velocity = move;
+        }
+        else
+        {
+            move.x /= 1.3f;
+            move.z /= 1.3f;
+            rb.velocity = move;
+        }
         transform.rotation = Quaternion.Euler(0, rotationH, 0);
         cam.transform.localRotation = Quaternion.Euler(rotationV, 0, 0);
     }

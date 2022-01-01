@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float mouseSensitivity;
     [SerializeField] float movementSpeed;
     [SerializeField] float jumpForce;
+    [SerializeField] EnergyWeapon weapon;
+    [SerializeField] Transform bottom;
     float inputH;
     float inputV;
 
@@ -30,7 +32,7 @@ public class PlayerController : MonoBehaviour
         bool grounded = true;
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 1.6f))
+        if (Physics.Raycast(bottom.position, transform.TransformDirection(Vector3.down), out hit, 0.2f))
         {
             grounded = true;
         }
@@ -65,9 +67,13 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            move.x /= 1.3f;
-            move.z /= 1.3f;
-            rb.velocity = move;
+            if (inputH != 0 && inputV != 0)
+            {
+                move.x /= 1.3f;
+                move.z /= 1.3f;
+                
+                rb.velocity = move;
+            }
         }
         transform.rotation = Quaternion.Euler(0, rotationH, 0);
         cam.transform.localRotation = Quaternion.Euler(rotationV, 0, 0);

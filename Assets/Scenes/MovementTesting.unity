@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 433230063}
   - component: {fileID: 433230064}
+  - component: {fileID: 433230068}
   - component: {fileID: 433230066}
   - component: {fileID: 433230065}
   - component: {fileID: 433230067}
@@ -174,7 +175,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 1891004835}
   rb: {fileID: 433230066}
-  mouseSensitivity: 100
   movementSpeed: 500
   jumpForce: 5000
   weapon: {fileID: 0}
@@ -223,6 +223,20 @@ CapsuleCollider:
   m_Height: 1.27
   m_Direction: 1
   m_Center: {x: 0, y: -0.33, z: 0}
+--- !u!114 &433230068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433230062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5021955d7b1266389c7ac1115779376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 1891004835}
+  mouseSensitivity: 200
 --- !u!1 &666490198
 GameObject:
   m_ObjectHideFlags: 0

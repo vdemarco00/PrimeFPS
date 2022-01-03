@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject cam;
     [SerializeField] private Rigidbody rb;
-    [SerializeField] float mouseSensitivity;
+    //[SerializeField] float mouseSensitivity;
     [SerializeField] float movementSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] EnergyWeapon weapon;
@@ -14,16 +14,16 @@ public class PlayerController : MonoBehaviour
     float inputH;
     float inputV;
 
-    float mouseH;
-    float mouseV;
+    //float mouseH;
+    //float mouseV;
 
-    float rotationH;
-    float rotationV;
+    //float rotationH;
+    //float rotationV;
 
     void Start()
     {
-        rotationH = transform.eulerAngles.y;
-        rotationV = cam.transform.eulerAngles.x;
+        //rotationH = transform.eulerAngles.y;
+        //rotationV = cam.transform.eulerAngles.x;
     }
 
 
@@ -49,12 +49,12 @@ public class PlayerController : MonoBehaviour
         inputH = Input.GetAxis("Horizontal");
         inputV = Input.GetAxis("Vertical");
         
-        mouseH = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        mouseV = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        //mouseH = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        //mouseV = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        rotationH += mouseH;
-        rotationV += -mouseV;
-        rotationV = Mathf.Clamp(rotationV, -90, 90);
+        //rotationH += mouseH;
+        //rotationV += -mouseV;
+        //rotationV = Mathf.Clamp(rotationV, -90, 90);
 
         
         Vector3 move = transform.right * inputH + transform.forward * inputV;
@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = move;
             }
         }
-        transform.rotation = Quaternion.Euler(0, rotationH, 0);
-        cam.transform.localRotation = Quaternion.Euler(rotationV, 0, 0);
+        //transform.rotation = Quaternion.Euler(0, rotationH, 0);
+        //cam.transform.localRotation = Quaternion.Euler(rotationV, 0, 0);
     }
 }

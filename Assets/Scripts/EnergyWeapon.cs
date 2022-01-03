@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class EnergyWeapon : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private enum WeaponMode
+    {
+        Energy
+    }
     void Start()
+    {
+        GameManager.instance.inputHandler.FireEventSubscribe(FireWeapon);
+    }
+
+    void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void FireWeapon()
     {
-        
+        Debug.Log("Fire Gun");
     }
 }

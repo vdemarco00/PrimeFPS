@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputHandler : MonoBehaviour 
 {
     bool acceptInput;
-    public delegate void FireEvent();
+    public delegate void FireEvent(bool buttonDown);
     FireEvent fireEvent;
 
     private void Awake()
@@ -22,7 +22,12 @@ public class InputHandler : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 if (fireEvent != null)
-                    fireEvent();
+                    fireEvent(true);
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (fireEvent != null)
+                    fireEvent(false);
             }
         }
     }

@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class EnergyWeapon : MonoBehaviour
 {
-    private enum WeaponMode
+    [SerializeField] GameObject energyPrefab;
+    [SerializeField] Transform fireLocation;
+
+    public enum WeaponMode
     {
-        Energy
+        Energy,
+        Missile
     }
+    private WeaponMode currentMode;
+
     void Start()
     {
         GameManager.instance.inputHandler.FireEventSubscribe(FireWeapon);
+        currentMode = WeaponMode.Energy;
     }
 
     void Update()
@@ -18,8 +25,13 @@ public class EnergyWeapon : MonoBehaviour
         
     }
 
-    void FireWeapon()
+    void FireWeapon(bool buttonDown) // instantiate projectile, send its goal after firing a raycast
     {
-        Debug.Log("Fire Gun");
+        if (buttonDown)
+        {
+            Debug.Log("Fire Gun");
+        }
+        //else
+        //    Debug.Log("Stop firing");
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1297693663}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -177,7 +177,7 @@ MonoBehaviour:
   rb: {fileID: 433230066}
   movementSpeed: 500
   jumpForce: 5000
-  weapon: {fileID: 0}
+  weapon: {fileID: 1458030028}
   bottom: {fileID: 851445994}
 --- !u!136 &433230065
 CapsuleCollider:
@@ -829,6 +829,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a312ceaab5e0478898c7fb318f3fe28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyPrefab: {fileID: 5768337077082489070, guid: f1375e951f1204fcf968fdfd2c4ab5f4, type: 3}
+  fireLocation: {fileID: 1537928628}
 --- !u!1 &1503759140
 GameObject:
   m_ObjectHideFlags: 0

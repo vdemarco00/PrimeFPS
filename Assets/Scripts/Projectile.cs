@@ -40,7 +40,13 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other) // apply damage and force
     {
         if (other.tag != "Player")
+        {
+            if (other.gameObject.GetComponent<Rigidbody>() != null)
+            {
+                other.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * forceApplied, ForceMode.Impulse);
+            }
             Destroy(gameObject);
+        }
     }
 
 }

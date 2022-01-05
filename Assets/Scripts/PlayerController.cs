@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         
         Vector3 move = transform.right * inputH + transform.forward * inputV;
         move.Normalize();
-        move *= movementSpeed * Time.deltaTime;
+        move *= movementSpeed;
         move.y = rb.velocity.y;
         if (grounded)
         {

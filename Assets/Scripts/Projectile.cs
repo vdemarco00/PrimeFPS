@@ -12,10 +12,11 @@ public class Projectile : MonoBehaviour
     [SerializeField] float destructTime;
     private Vector3 goalPosition;
 
-    bool moving;
+    public bool moving;
+
     private void Awake()
     {
-        moving = true;
+        moving = false;
         destructTime = destructTime + Time.time;
     }
 

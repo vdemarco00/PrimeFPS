@@ -6,6 +6,11 @@ public class EnergyWeapon : MonoBehaviour
 {
     [SerializeField] GameObject energyPrefab;
     [SerializeField] Transform fireLocation;
+    [SerializeField] float chargeTime;
+    float chargeThreshold;
+    bool firing;
+
+    GameObject chargeProjectile;
 
     public enum WeaponMode
     {
@@ -22,17 +27,38 @@ public class EnergyWeapon : MonoBehaviour
 
     void Update()
     {
-        
+        if (currentMode == WeaponMode.Energy)
+        {
+            if (firing)
+            {
+                if (Time.time > chargeThreshold && chargeProjectile == null && chargeThreshold != 0)
+                {
+                    chargeProjectile = Instantiate(energyPrefab, fireLocation.position, fireLocation.rotation, fireLocation);
+                }
+            }
+            else
+            {
+                if (chargeProjectile != null)
+                {
+                    chargeProjectile.transform.parent = null;
+                    chargeProjectile.GetComponent<Projectile>().moving = true;
+                }
+            }
+        }
     }
 
     void FireWeapon(bool buttonDown) // instantiate projectile, send its goal after firing a raycast
     {
-        if (buttonDown)
+        firing = buttonDown;
+        if (firing)
         {
-            //Debug.Log("Fire Gun");
             GameObject newProjectile = Instantiate(energyPrefab, fireLocation.position, fireLocation.rotation);
+            newProjectile.GetComponent<Projectile>().moving = true;
+            chargeThreshold = Time.time + chargeTime;
         }
-        //else
-        //    Debug.Log("Stop firing");
+        else
+        {
+            chargeThreshold = 0;
+        }
     }
 }

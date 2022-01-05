@@ -29,7 +29,8 @@ public class EnergyWeapon : MonoBehaviour
     {
         if (buttonDown)
         {
-            Debug.Log("Fire Gun");
+            //Debug.Log("Fire Gun");
+            GameObject newProjectile = Instantiate(energyPrefab, fireLocation.position, fireLocation.rotation);
         }
         //else
         //    Debug.Log("Stop firing");

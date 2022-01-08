@@ -24,7 +24,6 @@ public class Projectile : MonoBehaviour
     {
         if (moving) // move gameobject towards its goal
         {
-            //transform.position = Vector3.MoveTowards()
             transform.position += transform.forward * movementSpeed * Time.deltaTime;
         }
         if (Time.time > destructTime)

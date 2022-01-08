@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject cam;
+    [SerializeField] Animator animator;
     [SerializeField] private Rigidbody rb;
     [SerializeField] float movementSpeed;
     [SerializeField] float jumpForce;
@@ -39,6 +40,11 @@ public class PlayerController : MonoBehaviour
 
         inputH = Input.GetAxis("Horizontal");
         inputV = Input.GetAxis("Vertical");
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            animator.SetBool("walking", true);
+        else
+            animator.SetBool("walking", false);
         
         Vector3 move = transform.right * inputH + transform.forward * inputV;
         move.Normalize();

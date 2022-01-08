@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(bottom.position, transform.TransformDirection(Vector3.down), out hit, 0.2f))
         {
             grounded = true;
+            animator.SetBool("jump", false);
         }
         else
         {
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             rb.AddForce(transform.up * jumpForce);
+            animator.SetBool("jump", true);
         }
 
         inputH = Input.GetAxis("Horizontal");

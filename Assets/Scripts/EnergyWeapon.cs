@@ -9,6 +9,7 @@ public class EnergyWeapon : MonoBehaviour
     [SerializeField] float chargeTime;
     float chargeThreshold;
     bool firing;
+    Animator animator;
 
     GameObject chargeProjectile;
 
@@ -23,6 +24,7 @@ public class EnergyWeapon : MonoBehaviour
     {
         GameManager.instance.inputHandler.FireEventSubscribe(FireWeapon);
         currentMode = WeaponMode.Energy;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -52,6 +54,7 @@ public class EnergyWeapon : MonoBehaviour
         firing = buttonDown;
         if (firing)
         {
+            animator.SetTrigger("fire");
             GameObject newProjectile = Instantiate(energyPrefab, fireLocation.position, fireLocation.rotation);
             newProjectile.GetComponent<Projectile>().moving = true;
             chargeThreshold = Time.time + chargeTime;

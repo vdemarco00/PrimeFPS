@@ -11,8 +11,11 @@ public class MouseLook : MonoBehaviour
 
     float rotationH;
     float rotationV;
+
+    Rigidbody rb;
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         rotationH = transform.eulerAngles.y;
         rotationV = cam.transform.eulerAngles.x;
     }
@@ -26,7 +29,7 @@ public class MouseLook : MonoBehaviour
         rotationV += -mouseV;
         rotationV = Mathf.Clamp(rotationV, -90, 90);
 
-        transform.rotation = Quaternion.Euler(0, rotationH, 0);
+        rb.MoveRotation(Quaternion.Euler(0, rotationH, 0));
         cam.transform.localRotation = Quaternion.Euler(rotationV, 0, 0);
     }
 }

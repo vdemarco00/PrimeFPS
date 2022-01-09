@@ -5,15 +5,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ProjectileData : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float damageGiven;
+    public float forceApplied;
+    public float movementSpeed;
+    public float destructTime;
 }

@@ -8,9 +8,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float damageGiven;
     [SerializeField] float forceApplied;
     [SerializeField] float movementSpeed;
-    [SerializeField] float maxDistance;
     [SerializeField] float destructTime;
-    private Vector3 goalPosition;
 
     public bool moving;
 
@@ -30,10 +28,12 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void SetGoal(Vector3 newGoal)
+    public void SetData(ProjectileData newData)
     {
-        goalPosition = newGoal;
-        moving = true;
+        damageGiven = newData.damageGiven;
+        movementSpeed = newData.movementSpeed;
+        forceApplied = newData.forceApplied;
+        destructTime = newData.destructTime;
     }
 
     private void OnTriggerEnter(Collider other) // apply damage and force
@@ -43,6 +43,10 @@ public class Projectile : MonoBehaviour
             if (other.gameObject.GetComponent<Rigidbody>() != null)
             {
                 other.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * forceApplied, ForceMode.Impulse);
+            }
+            if (other.gameObject.GetComponent<DestructibleObject>() != null)
+            {
+                other.gameObject.GetComponent<DestructibleObject>().ApplyDamage(damageGiven);
             }
             Destroy(gameObject);
         }

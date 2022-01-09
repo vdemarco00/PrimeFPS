@@ -30,6 +30,6 @@ public class MouseLook : MonoBehaviour
         rotationV = Mathf.Clamp(rotationV, -90, 90);
 
         rb.MoveRotation(Quaternion.Euler(0, rotationH, 0));
-        cam.transform.localRotation = Quaternion.Euler(rotationV, 0, 0);
+        cam.transform.localRotation = Quaternion.Euler(rotationV, 0, cam.transform.rotation.z);
     }
 }

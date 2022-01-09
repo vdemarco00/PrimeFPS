@@ -13,6 +13,8 @@ public class EnergyWeapon : MonoBehaviour
 
     GameObject chargeProjectile;
 
+    [SerializeField] ProjectileData[] projectileData;
+
     public enum WeaponMode
     {
         Energy,

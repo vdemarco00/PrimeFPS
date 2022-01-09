@@ -253,6 +253,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 1891004835}
   interactionDistance: 5
+  heldItem: {fileID: 0}
+  holdTransform: {fileID: 768533051}
+  throwForce: 5
 --- !u!1 &666490198
 GameObject:
   m_ObjectHideFlags: 0

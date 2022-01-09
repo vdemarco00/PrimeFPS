@@ -75,6 +75,7 @@ public class EnergyWeapon : MonoBehaviour
 
     public void SetActiveStatus(bool activeStatus)
     {
+        Debug.Log(activeStatus);
         canShoot = activeStatus;
     }
 

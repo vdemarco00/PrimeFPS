@@ -8,6 +8,9 @@ public class InputHandler : MonoBehaviour
     public delegate void FireEvent(bool buttonDown);
     FireEvent fireEvent;
 
+    public delegate void InteractEvent();
+    InteractEvent interactEvent;
+
     private void Awake()
     {
         acceptInput = true;
@@ -29,11 +32,21 @@ public class InputHandler : MonoBehaviour
                 if (fireEvent != null)
                     fireEvent(false);
             }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (interactEvent != null)
+                    interactEvent();
+            }
         }
     }
 
     public void FireEventSubscribe(FireEvent newMethod)
     {
         fireEvent += newMethod;
+    }
+
+    public void InteractEventSubscribe(InteractEvent newMethod)
+    {
+        interactEvent += newMethod;
     }
 }

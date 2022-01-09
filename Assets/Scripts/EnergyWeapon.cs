@@ -10,6 +10,7 @@ public class EnergyWeapon : MonoBehaviour
     float chargeThreshold;
     bool firing;
     Animator animator;
+    bool canShoot;
 
     GameObject chargeProjectile;
 
@@ -25,8 +26,10 @@ public class EnergyWeapon : MonoBehaviour
     void Start()
     {
         GameManager.instance.inputHandler.FireEventSubscribe(FireWeapon);
+        GetComponentInParent<PlayerInteraction>().WeaponEventSubscribe(SetActiveStatus);
         currentMode = WeaponMode.Energy;
         animator = GetComponent<Animator>();
+        canShoot = true;
     }
 
     void Update()
@@ -53,17 +56,26 @@ public class EnergyWeapon : MonoBehaviour
 
     void FireWeapon(bool buttonDown) // instantiate projectile, send its goal after firing a raycast
     {
-        firing = buttonDown;
-        if (firing)
+        if (canShoot)
         {
-            animator.SetTrigger("fire");
-            GameObject newProjectile = Instantiate(energyPrefab, fireLocation.position, fireLocation.rotation);
-            newProjectile.GetComponent<Projectile>().moving = true;
-            chargeThreshold = Time.time + chargeTime;
-        }
-        else
-        {
-            chargeThreshold = 0;
+            firing = buttonDown;
+            if (firing)
+            {
+                animator.SetTrigger("fire");
+                GameObject newProjectile = Instantiate(energyPrefab, fireLocation.position, fireLocation.rotation);
+                newProjectile.GetComponent<Projectile>().moving = true;
+                chargeThreshold = Time.time + chargeTime;
+            }
+            else
+            {
+                chargeThreshold = 0;
+            }
         }
     }
+
+    public void SetActiveStatus(bool activeStatus)
+    {
+        canShoot = activeStatus;
+    }
+
 }

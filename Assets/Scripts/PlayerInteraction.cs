@@ -53,20 +53,23 @@ public class PlayerInteraction : MonoBehaviour
         }
         else if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, interactionDistance))
         {
-            if (hit.collider.gameObject.GetComponent<Rigidbody>() && !holdingItem)
+            if (hit.collider.tag != "Player")
             {
-                Debug.Log("interact with " + hit.collider.name);
+                if (hit.collider.gameObject.GetComponent<Rigidbody>() && !holdingItem)
+                {
+                    Debug.Log("interact with " + hit.collider.name);
 
-                heldItem = hit.collider.gameObject;
-                Rigidbody objRB = hit.collider.gameObject.GetComponent<Rigidbody>();
-                objRB.useGravity = false;
-                objRB.freezeRotation = true;
-                heldItem.GetComponent<Collider>().isTrigger = true;
-                holdingItem = true;
+                    heldItem = hit.collider.gameObject;
+                    Rigidbody objRB = hit.collider.gameObject.GetComponent<Rigidbody>();
+                    objRB.useGravity = false;
+                    objRB.freezeRotation = true;
+                    heldItem.GetComponent<Collider>().isTrigger = true;
+                    holdingItem = true;
 
-                heldItem.transform.position = holdTransform.position;
-                heldItem.transform.parent = holdTransform;
-                weaponStateEvent(false);
+                    heldItem.transform.position = holdTransform.position;
+                    heldItem.transform.parent = holdTransform;
+                    weaponStateEvent(false);
+                }
             }
         }
     }
